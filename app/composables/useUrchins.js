@@ -10,8 +10,8 @@ export default ({ timeElapsed, end, windowHP }) => {
 
   const spawnDelay = () => {
     if (timeElapsed.value < 1000 * 60) return randomInteger(8000, 12000)
-    if (timeElapsed.value < 1000 * 120) return randomInteger(4000, 8000)
-    return randomInteger(4000, 8000)
+    if (timeElapsed.value < 1000 * 120) return randomInteger(6000, 8000)
+    return randomInteger(4000, 6000)
   }
 
   const spawnUrchin = () => {

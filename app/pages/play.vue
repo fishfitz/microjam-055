@@ -48,13 +48,15 @@ const setLook = (key) => {
 </script>
 
 <template>
-  <div class="scene">
+  <div class="scene" :style="{ opacity: timeElapsed > 2000 ? 1 : 0 }">
     <div
       :class="{ 'look-left': look.left, 'look-right': look.right, 'look-middle': look.middle }"
       class="cube"
     >
       <div class="face face-left" @click="() => setLook('left')">
         <div style="background: url(fondaquariumleft.png);" class="push-1 pointer-events-none" />
+        <img src="/particles1.gif" class="particles push-05 pointer-events-none opacity-80">
+        <img src="/particles2.gif" class="particles push-02 pointer-events-none opacity-10">
         <div style="background: url(aquariumleft.png);" :class="{ 'pointer-events-none': look.right || look.left }" />
         <TransitionGroup name="urchins" tag="div" class="z-[2] pointer-events-none">
           <CreatureUrchin v-for="(urchin, index) in urchinsManager.urchins.left" :key="urchin.spawnTime" :urchin="urchin" :class="{ 'pointer-events-auto': look.left }" @remove="() => urchinsManager.remove('left', index)"/>
@@ -64,7 +66,9 @@ const setLook = (key) => {
       </div>
 
       <div class="face face-back"  @click="() => setLook('middle')">
-        <div style="background: url(fondaquariummiddle.png);" class="push-1 pointer-events-none" />
+        <div style="background: url(fondaquariummiddle.jpg);" class="push-1 pointer-events-none" />
+        <img src="/particles1.gif" class="particles push-05 pointer-events-none opacity-80">
+        <img src="/particles2.gif" class="particles push-02 pointer-events-none opacity-10">
         <div style="background: url(aquariummiddle.png);" />
         <TransitionGroup name="urchins" tag="div" class="z-[2] pointer-events-none">
           <CreatureUrchin v-for="(urchin, index) in urchinsManager.urchins.middle" :key="urchin.spawnTime" :urchin="urchin" :class="{ 'pointer-events-auto': look.middle }" @remove="() => urchinsManager.remove('middle', index)"/>
@@ -75,6 +79,8 @@ const setLook = (key) => {
       
       <div v-on-click-outside="() => look.right && setLook()" class="face face-right" @click="() => setLook('right')">
         <div style="background: url(fondaquariumright.png);" class="push-1 pointer-events-none" />
+        <img src="/particles1.gif" class="particles push-05 pointer-events-none opacity-80">
+        <img src="/particles2.gif" class="particles push-02 pointer-events-none opacity-10">
         <div style="background: url(aquariumright.png);" :class="{ 'pointer-events-none': look.left || look.right }"/>
         <TransitionGroup name="urchins" tag="div" class="z-[2] pointer-events-none">
           <CreatureUrchin v-for="(urchin, index) in urchinsManager.urchins.right" :key="urchin.spawnTime" :urchin="urchin" :class="{ 'pointer-events-auto': look.right }" @remove="() => urchinsManager.remove('right', index)"/>
@@ -94,8 +100,10 @@ const setLook = (key) => {
 
 <style scoped>
 .scene {
+  opacity: 0;
   perspective: 1450px;
   perspective-origin: 50% 50%;
+  transition: opacity 4s ease-in;
 }
 
 .cube {
@@ -121,14 +129,17 @@ const setLook = (key) => {
 
   &.look-middle {
     transform: translateZ(1000px) rotateY(0);
+    .face-back .push-1 { transform: translateZ(-300px)!important; }
   }
 
   &.look-left {
     transform: translateZ(300px) translateX(800px) rotateY(-85deg);
+    .push-1 { transform: translateZ(300px) scale(1.15, 1.15); }
   }
 
   &.look-right {
     transform: translateZ(2500px) translateX(1000px) rotateY(85deg);
+    .push-1 { transform: translateZ(300px) scale(1.15, 1.15); }
   }
 }
 
@@ -145,26 +156,34 @@ const setLook = (key) => {
   transition: all 1s;
   transform-style: preserve-3d;
 
-  div {
+  div, .particles {
+    transition: all 1s;
     position: absolute;
     height: 100%;
     width: 100%;
   }
 }
 
+.particles {
+  filter: hue-rotate(-70deg);
+}
 
-.face-right  { transform: rotateY( 90deg) translateZ(var(--translate)) scaleX(-1); }
-.face-back   { transform: translateZ(var(--translate-neg)); }
-.face-left   { transform: rotateY(-90deg) translateZ(var(--translate)) scaleX(-1); }
-.face-top    { transform: rotateX( 90deg) translateZ(var(--translate)) scaleY(-1);; }
-.face-bottom { transform: rotateX(-90deg) translateZ(var(--translate)) scaleY(-1);; }
+.face-right  { transform: rotateY( 90deg) translateZ(var(--translate)) scaleX(-1.01) scaleY(1.02); }
+.face-back   { transform: translateZ(var(--translate-neg)) scaleY(1.02) scaleX(1.02); }
+.face-left   { transform: rotateY(-90deg) translateZ(var(--translate)) scaleX(-1.01) scaleY(1.02); }
+.face-top    { transform: rotateX( 90deg) translateZ(var(--translate)) scaleY(-1.01) scaleX(1.02); }
+.face-bottom { transform: rotateX(-90deg) translateZ(var(--translate)) scaleY(-1.01) scaleX(1.02); }
 
-.push-1 { transform: translateZ(300px) scaleX(1.15); }
+.push-1 { transform: translateZ(300px) scale(1.7, 1.3); }
+.push-05 { transform: translateZ(150px) }
+.push-08 { transform: translateZ(-230px) }
 .pull-1 { transform: translateZ(-1px); }
 
 .face-back {
-  .push-1 { transform: translateZ(-300px) scaleX(1.15); }
-  .pull-1 { transform: translateZ(1px); }
+  .push-1 { transform: translateZ(-300px)!important; }
+  .push-05 { transform: translateZ(-150px) }
+  .push-08 { transform: translateZ(-230px) }
+  .pull-1 { transform: translateZ(1px)!important; }
 }
 
 .urchins-enter-active,

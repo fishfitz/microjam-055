@@ -24,7 +24,7 @@ const hit = throttle(() => {
 <template>
   <img
     ref="urchinElement"
-    :src="isHit ? '/urchinhit.png' : '/urchin.png'"
+    :src="isHit ? 'urchinhit.png' : 'urchin.png'"
     class="absolute z-[2] urchin"
     :style="{ left: `${urchin.x}px`, top: `${urchin.y}px` }"
     :class="{ isHit }"

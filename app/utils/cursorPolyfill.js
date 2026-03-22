@@ -34,6 +34,8 @@ export default () => {
   function updateCursor(e) {
     if (!activeCursor) return;
 
+    console.log(`url("${activeCursor?.replace('.png', isClicked ? 'active.png' : '.png')}")`)
+
     if (e) cursorEl.style.transform = `translate(${e.clientX - hotspotX - 32}px, ${e.clientY - hotspotY - 32}px)`;
     cursorEl.style.backgroundImage = `url("${activeCursor?.replace('.png', isClicked ? 'active.png' : '.png')}")`;
   }

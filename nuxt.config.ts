@@ -6,8 +6,9 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
 
   app: {
+    baseURL: '/microjam055/',
     head: {
-      link: [{ rel: 'stylesheet', href: '/main.css' }],
+      link: [{ rel: 'stylesheet', href: 'main.css' }],
     }
   },
 

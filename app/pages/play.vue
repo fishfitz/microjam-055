@@ -32,17 +32,16 @@ setInterval(() => {
   }
 }, 100)
 
-// AUDIO: usually here the player has clicked something on the screen so the audio context is unlocked
-// So you can play main theme here; pseudocode:
-const { playMainTheme } = useGameAudio()
-/*
-  // import { throttle } from 'all-of-just/functions'
-  playmaintheme()
-  watch(timeElapsed, throttle(() => {
-    if (timeElapsed.value > 1000 * 120) switchtothemevnr1()
-    else if (timeElapsed.value > 1000 * 60) switchthemevnr2()
-  }, 1000))
-*/
+// AUDIO: player clicked to get here so audio context is unlocked — theme auto-plays when loaded
+const { switchToHard, switchToHarder } = useGameAudio()
+
+const stopHardWatch = watch(windowHP, (hp) => {
+  if (Object.values(hp).some(v => v < 75)) { switchToHard(); stopHardWatch() }
+}, { deep: true })
+
+const stopHarderWatch = watch(windowHP, (hp) => {
+  if (Object.values(hp).some(v => v < 50)) { switchToHarder(); stopHarderWatch() }
+}, { deep: true })
 
 const urchinsManager = useUrchins({ timeElapsed, end, windowHP })
 

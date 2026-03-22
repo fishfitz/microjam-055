@@ -91,7 +91,7 @@ const setLook = (key) => {
       </div>
       
       <div v-on-click-outside="() => look.right && setLook()" class="face face-right" @click="() => setLook('right')">
-        <div style="background: url(fondaquariumright.png);" class="push-1 pointer-events-none" />
+        <div style="background: url(fondaquariumright.jpg);" class="push-1 pointer-events-none" />
         <img src="/particles1.gif" class="particles push-05 pointer-events-none opacity-80">
         <img src="/particles2.gif" class="particles push-02 pointer-events-none opacity-10">
         <div style="background: url(aquariumright.png);" :class="{ 'pointer-events-none': look.left || look.right }"/>

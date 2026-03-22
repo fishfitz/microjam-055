@@ -102,7 +102,7 @@
 </script>
 
 <template>
-  <canvas ref="canvas" class="absolute left-0 top-0 opacity-[0.9] pointer-events-none z-[2]"/>
+  <canvas ref="canvas" class="absolute left-0 top-0 opacity-[0.97] pointer-events-none z-[2]"/>
   <div ref="interractive" :class="{ 'pointer-events-none': !enabled }" class="absolute left-0 top-0 z-[0] h-full w-full dirt"/>
 </template>
 

@@ -21,9 +21,6 @@ cursorPolyfill()
 </template>
 
 <style>
-.main-container {
-}
-
 @keyframes grain {
   0%, 100% {transform: translate(0,0);}
   10% {transform: translate(-5%,-10%);}

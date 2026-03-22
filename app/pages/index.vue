@@ -10,7 +10,7 @@ const preloadImg = [
   'dirtright.png',
   'fondaquariumleft.png',
   'fondaquariummiddle.jpg',
-  'fondaquariumright.png',
+  'fondaquariumright.jpg',
   'particles1.gif',
   'particles2.gif',
   'urchin.png',
@@ -23,7 +23,11 @@ const preloadImg = [
   'windowmiddlemediumdmg.png',
   'windowrighthighdmg.png',
   'windowrightlightdmg.png',
-  'windowrightmediumdmg.png'
+  'windowrightmediumdmg.png',
+  'visall.png',
+  'vis1.png',
+  'vis2.png',
+  'vis3.png'
 ]
 </script>
 

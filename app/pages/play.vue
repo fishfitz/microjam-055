@@ -44,6 +44,7 @@ const stopHarderWatch = watch(windowHP, (hp) => {
 }, { deep: true })
 
 const urchinsManager = useUrchins({ timeElapsed, end, windowHP })
+const rivetsManager = useRivets({ timeElapsed, end, windowHP })
 
 const setLook = (key) => {
   if (look.value[key]) return
@@ -66,7 +67,7 @@ const setLook = (key) => {
       class="cube"
     >
       <div class="face face-left" @click="() => setLook('left')">
-        <div style="background: url(fondaquariumleft.png);" class="push-1 pointer-events-none" />
+        <div style="background: url(fondaquariumleft.jpg);" class="push-1 pointer-events-none" />
         <img src="/particles1.gif" class="particles push-05 pointer-events-none opacity-80">
         <img src="/particles2.gif" class="particles push-02 pointer-events-none opacity-10">
         <div style="background: url(aquariumleft.png);" :class="{ 'pointer-events-none': look.right || look.left }" />
@@ -87,6 +88,7 @@ const setLook = (key) => {
         </TransitionGroup>
         <DirtCanvas image="dirtmiddle.png" :enabled="look.middle && !clean.middle" @clean="() => clean.middle = true"/>
         <DamageWindow :hp="windowHP" window-key="middle"/>
+        <RivetRing :rivet="rivetsManager.rivetMissing" :enabled="look.middle" @fix="() => rivetsManager.remove()"/>
       </div>
       
       <div v-on-click-outside="() => look.right && setLook()" class="face face-right" @click="() => setLook('right')">
@@ -97,7 +99,7 @@ const setLook = (key) => {
         <TransitionGroup name="urchins" tag="div" class="z-[2] pointer-events-none">
           <CreatureUrchin v-for="(urchin, index) in urchinsManager.urchins.right" :key="urchin.spawnTime" :urchin="urchin" :class="{ 'pointer-events-auto': look.right }" @remove="() => urchinsManager.remove('right', index)"/>
         </TransitionGroup>
-        <DirtCanvas image="dirtright.png" :enabled="look.right && !clean.right"  @clean="() => clean.right = true"/>
+        <DirtCanvas image="dirtright.png" :enabled="look.right && !clean.right" @clean="() => clean.right = true"/>
         <DamageWindow :hp="windowHP" window-key="right"/>
       </div>
 

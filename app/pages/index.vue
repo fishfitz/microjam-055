@@ -14,7 +14,7 @@ const preloadImg = [
   'dirtleft.png',
   'dirtmiddle.png',
   'dirtright.png',
-  'fondaquariumleft.png',
+  'fondaquariumleft.jpg',
   'fondaquariummiddle.jpg',
   'fondaquariumright.jpg',
   'particles1.gif',

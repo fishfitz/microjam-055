@@ -30,7 +30,7 @@ export default ({ timeElapsed, end, windowHP }) => {
     setTimeout(spawnUrchin, spawnDelay())
   }
   
-  setTimeout(spawnUrchin, spawnDelay())
+  setTimeout(spawnUrchin, 4000 + spawnDelay())
 
   const damageWindow = () => {
     if (end.value) return
@@ -48,7 +48,7 @@ export default ({ timeElapsed, end, windowHP }) => {
     setTimeout(damageWindow, 1000)
   }
 
-  setTimeout(damageWindow, 100)
+  setTimeout(damageWindow, 1000)
 
   return reactive({
     urchins,

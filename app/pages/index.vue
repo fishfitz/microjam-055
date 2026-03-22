@@ -1,4 +1,10 @@
 <script setup>
+import Pizzicato from 'pizzicato'
+
+function resumeAudio() {
+  Pizzicato.context.resume()
+}
+
 const preloadImg = [
   'aquariumbottom.jpg',
   'aquariumleft.png',
@@ -32,7 +38,7 @@ const preloadImg = [
 </script>
 
 <template>
-  <nuxt-link class="block" to="/play">
+  <nuxt-link class="block" to="/play" @click="resumeAudio">
     <div class="flex flex-col justify-center items-center h-full text-white">
       <h1 class="text-[120px] mb-4"> Micro Jam 055 </h1>
       <div class="blink text-[64px]">

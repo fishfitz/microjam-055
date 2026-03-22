@@ -1,5 +1,6 @@
 <script setup>
   import { throttle } from 'all-of-just/functions'
+  import { startCleaning, stopCleaning } from '@/composables/useGameAudio'
 
   const props = defineProps({
     image: {
@@ -64,19 +65,22 @@
       initialDirtyPixels = getDirtyPixels()
     };
 
-    const isCleaning = ref(false); // AUDIO: you can watch(isCleaning, () => {}) to check if the player is cleaning stuff
+    const isCleaning = ref(false);
 
     interractive.value.addEventListener('mousedown', () => {
       isCleaning.value = true;
+      startCleaning();
     });
 
     interractive.value.addEventListener('mouseup', () => {
       isCleaning.value = false;
+      stopCleaning();
       ctx.beginPath();
     });
 
     interractive.value.addEventListener('mouseleave', () => {
       isCleaning.value = false;
+      stopCleaning();
     });
 
     interractive.value.addEventListener('mousemove', (e) => {

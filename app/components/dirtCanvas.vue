@@ -64,23 +64,23 @@
       initialDirtyPixels = getDirtyPixels()
     };
 
-    let isDrawing = false; 
+    const isCleaning = ref(false); // AUDIO: you can watch(isCleaning, () => {}) to check if the player is cleaning stuff
 
     interractive.value.addEventListener('mousedown', () => {
-      isDrawing = true;
+      isCleaning.value = true;
     });
 
     interractive.value.addEventListener('mouseup', () => {
-      isDrawing = false;
+      isCleaning.value = false;
       ctx.beginPath();
     });
 
     interractive.value.addEventListener('mouseleave', () => {
-      isDrawing = false;
+      isCleaning.value = false;
     });
 
     interractive.value.addEventListener('mousemove', (e) => {
-      if (!isDrawing) return;
+      if (!isCleaning.value) return;
       const { x, y } = getMouse(e);
       ctx.globalCompositeOperation = 'destination-out';
       ctx.globalAlpha = 0.25;

@@ -22,6 +22,7 @@
     "@vueuse/nuxt": "^14.2.1",
     "all-of-just": "^3.0.0",
     "nuxt": "^4.4.2",
+    "pizzicato": "^0.6.4",
     "squirrelly": "^9.1.0",
     "v-gsap-nuxt": "^1.5.12",
     "vue": "^3.5.30",

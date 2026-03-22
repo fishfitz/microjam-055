@@ -18,13 +18,15 @@ export default ({ timeElapsed, end, windowHP }) => {
     if (end.value) return
 
     const key = random(['left', 'middle', 'right'])
+    // AUDIO: urchin spawns here
+
     urchins.value[key].push({
       x: key === 'middle' ? randomInteger(420, 1520) : randomInteger(key === 'left' ? 100 : 300, 1780),
       y: key === 'middle' ? randomInteger(420, 1520) : randomInteger(500, 1500),
       spawnTime: timeElapsed.value,
       damageDealt: 0
     })
-    
+
     setTimeout(spawnUrchin, spawnDelay())
   }
   
@@ -38,6 +40,7 @@ export default ({ timeElapsed, end, windowHP }) => {
         if (timeElapsed.value - urchin.spawnTime > 1000) {
           windowHP.value[key] -= 1
           urchin.damageDealt += 1
+          // AUDIO: urchin deals damage to window here
         }
       })
     })

@@ -14,10 +14,14 @@ const urchinElement = ref()
 const hp = ref(3)
 const isHit = ref(false)
 const hit = throttle(() => {
+  // AUDIO: urchin takes a hit here
   isHit.value = true
   setTimeout(() => (isHit.value = false), 250)
   hp.value -= 1
-  if (hp.value <= 0) emit('remove')
+  if (hp.value <= 0) {
+    // AUDIO: urchin dies here
+    emit('remove')
+  }
 }, 250)
 </script>
 

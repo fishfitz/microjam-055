@@ -1,5 +1,6 @@
 <script setup>
 import { vOnClickOutside } from '@vueuse/components'
+import { useGameAudio } from '@/composables/useGameAudio'
 
 const look = ref({
   left: false,
@@ -30,6 +31,18 @@ setInterval(() => {
     timeElapsed.value = Date.now() - initialTime
   }
 }, 100)
+
+// AUDIO: usually here the player has clicked something on the screen so the audio context is unlocked
+// So you can play main theme here; pseudocode:
+const { playMainTheme } = useGameAudio()
+/*
+  // import { throttle } from 'all-of-just/functions'
+  playmaintheme()
+  watch(timeElapsed, throttle(() => {
+    if (timeElapsed.value > 1000 * 120) switchtothemevnr1()
+    else if (timeElapsed.value > 1000 * 60) switchthemevnr2()
+  }, 1000))
+*/
 
 const urchinsManager = useUrchins({ timeElapsed, end, windowHP })
 

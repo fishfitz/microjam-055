@@ -32,7 +32,6 @@ setInterval(() => {
   }
 }, 100)
 
-// AUDIO: player clicked to get here so audio context is unlocked — theme auto-plays when loaded
 const { switchToHard, switchToHarder } = useGameAudio()
 
 const stopHardWatch = watch(windowHP, (hp) => {

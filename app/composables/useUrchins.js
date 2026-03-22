@@ -1,5 +1,6 @@
 import { random } from 'all-of-just/arrays'
 import { randomInteger } from 'all-of-just/numbers'
+import { playUrchinSpawn } from '@/composables/useGameAudio'
 
 export default ({ timeElapsed, end, windowHP }) => {
   const urchins = ref({
@@ -18,7 +19,7 @@ export default ({ timeElapsed, end, windowHP }) => {
     if (end.value) return
 
     const key = random(['left', 'middle', 'right'])
-    // AUDIO: urchin spawns here
+    playUrchinSpawn(key)
 
     urchins.value[key].push({
       x: key === 'middle' ? randomInteger(420, 1520) : randomInteger(key === 'left' ? 100 : 300, 1780),

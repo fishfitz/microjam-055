@@ -1,4 +1,5 @@
 import { randomInteger } from 'all-of-just/numbers'
+import { playShark, playRivetGling } from '@/composables/useGameAudio'
 
 export default ({ timeElapsed, end, windowHP }) => {
   const rivetMissing = ref(false)
@@ -12,7 +13,8 @@ export default ({ timeElapsed, end, windowHP }) => {
   const spawnRivet = () => {
     if (end.value || rivetMissing.value) return
     setTimeout(() => shakeScreen(), 1000)
-    // AUDIO: shark pass here
+    playShark()
+    setTimeout(() => playRivetGling(), 1500)
 
     rivetMissing.value = randomInteger(1, 3)
     setTimeout(spawnRivet, spawnDelay())

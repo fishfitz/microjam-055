@@ -1,4 +1,6 @@
 <script setup>
+import { playRivetFix } from '@/composables/useGameAudio'
+
 const props = defineProps({
   rivet: {
     type: [Number, Boolean],
@@ -10,7 +12,9 @@ const props = defineProps({
   }
 })
 
-defineEmits(['fix'])
+const emit = defineEmits(['fix'])
+
+const handleFix = () => { playRivetFix(); emit('fix') }
 
 const hitbox = computed(() => (({
   1: { left: '735px', top: '150px' },
@@ -28,7 +32,7 @@ const hitbox = computed(() => (({
     <Transition name="shark">
       <img v-if="rivet" src="/shark.png" class="shark">
     </Transition>
-    <div v-if="rivet" :style="hitbox" class="hitbox" :class="{ 'pointer-events-auto': enabled }" @click="$emit('fix')"/>
+    <div v-if="rivet" :style="hitbox" class="hitbox" :class="{ 'pointer-events-auto': enabled }" @click="handleFix"/>
   </div>
 </template>
 

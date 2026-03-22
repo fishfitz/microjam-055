@@ -76,6 +76,9 @@ const setLook = (key) => {
         </TransitionGroup>
         <DirtCanvas image="dirtleft.png" :enabled="look.left && !clean.left" @clean="() => clean.left = true"/>
         <DamageWindow :hp="windowHP" window-key="left"/>
+        <TransitionGroup name="urchins" tag="div" class="z-[2] pointer-events-none">
+          <CreatureUrchinLight v-for="urchin in urchinsManager.urchins.left" :key="urchin.spawnTime" :urchin="urchin"/>
+        </TransitionGroup>
       </div>
 
       <div class="face face-back"  @click="() => setLook('middle')">
@@ -89,6 +92,9 @@ const setLook = (key) => {
         <DirtCanvas image="dirtmiddle.png" :enabled="look.middle && !clean.middle" @clean="() => clean.middle = true"/>
         <DamageWindow :hp="windowHP" window-key="middle"/>
         <RivetRing :rivet="rivetsManager.rivetMissing" :enabled="look.middle" @fix="() => rivetsManager.remove()"/>
+        <TransitionGroup name="urchins" tag="div" class="z-[2] pointer-events-none">
+          <CreatureUrchinLight v-for="urchin in urchinsManager.urchins.middle" :key="urchin.spawnTime" :urchin="urchin"/>
+        </TransitionGroup>
       </div>
       
       <div v-on-click-outside="() => look.right && setLook()" class="face face-right" @click="() => setLook('right')">
@@ -101,6 +107,9 @@ const setLook = (key) => {
         </TransitionGroup>
         <DirtCanvas image="dirtright.png" :enabled="look.right && !clean.right" @clean="() => clean.right = true"/>
         <DamageWindow :hp="windowHP" window-key="right"/>
+        <TransitionGroup name="urchins" tag="div" class="z-[2] pointer-events-none">
+          <CreatureUrchinLight v-for="urchin in urchinsManager.urchins.right" :key="urchin.spawnTime" :urchin="urchin"/>
+        </TransitionGroup>
       </div>
 
       <div class="face face-top" style="background: url(aquariumtop.jpg);" @click="() => setLook()" />
@@ -144,16 +153,27 @@ const setLook = (key) => {
   &.look-middle {
     transform: translateZ(1000px) rotateY(0);
     .face-back .push-1 { transform: translateZ(-300px)!important; }
+
+    .face-right, .face-left  {
+      cursor: url(/cursors/back.png), none;
+    }
   }
 
   &.look-left {
     transform: translateZ(300px) translateX(800px) rotateY(-85deg);
     .push-1 { transform: translateZ(300px) scale(1.15, 1.15); }
+
+    .face-back, .face-right  {
+      cursor: url(/cursors/back.png), none;
+    }
   }
 
   &.look-right {
     transform: translateZ(2500px) translateX(1000px) rotateY(85deg);
     .push-1 { transform: translateZ(300px) scale(1.15, 1.15); }
+    .face-back, .face-left {
+      cursor: url(/cursors/back.png), none;
+    }
   }
 }
 
@@ -182,9 +202,18 @@ const setLook = (key) => {
   filter: hue-rotate(-70deg);
 }
 
-.face-right  { transform: rotateY( 90deg) translateZ(var(--translate)) scaleX(-1.01) scaleY(1.02); }
-.face-back   { transform: translateZ(var(--translate-neg)) scaleY(1.02) scaleX(1.02); }
-.face-left   { transform: rotateY(-90deg) translateZ(var(--translate)) scaleX(-1.01) scaleY(1.02); }
+.face-right  {
+  cursor: url(/cursors/lens.png), none;
+  transform: rotateY( 90deg) translateZ(var(--translate)) scaleX(-1.01) scaleY(1.02);
+}
+.face-back   { 
+  cursor: url(/cursors/lens.png), none;
+  transform: translateZ(var(--translate-neg)) scaleY(1.02) scaleX(1.02); 
+}
+.face-left   { 
+  cursor: url(/cursors/lens.png), none;
+  transform: rotateY(-90deg) translateZ(var(--translate)) scaleX(-1.01) scaleY(1.02); 
+}
 .face-top    { transform: rotateX( 90deg) translateZ(var(--translate)) scaleY(-1.01) scaleX(1.02); }
 .face-bottom { transform: rotateX(-90deg) translateZ(var(--translate)) scaleY(-1.01) scaleX(1.02); }
 

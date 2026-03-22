@@ -38,12 +38,21 @@ const preloadImg = [
 </script>
 
 <template>
-  <nuxt-link class="block" to="/play" @click="resumeAudio">
+  <nuxt-link class="block" to="/play" style="background: url(menu.jpg)" @click="resumeAudio">
     <div class="flex flex-col justify-center items-center h-full text-white">
-      <h1 class="text-[120px] mb-4"> Micro Jam 055 </h1>
-      <div class="blink text-[64px]">
+      <div class="mt-[600px] blink text-[90px]">
         Click to play
       </div>
+
+      <div class="credits">
+        <a href="https://www.instagram.com/hellofitzfish" target="_blank" @click.stop>Code by @FITZFISH</a>
+        <a href="https://www.instagram.com/louzeisbad" target="_blank" @click.stop>Art by @LOUZISBAD</a>
+        <a href="https://www.instagram.com/lawrel.cloud" target="_blank" @click.stop>Art by @LAWREL.CLOUD</a>
+        <a href="https://www.instagram.com/definitelynotpupp" target="_blank" @click.stop>Music & code by @DEFINITELYNOTPUPP</a>
+      </div>
+      
+      <img src="/particles1.gif" class="absolute h-full w-full z-[99] hue pointer-events-none opacity-50">
+      <img src="/particles2.gif" class="absolute h-full w-full z-[99] hue pointer-events-none opacity-10">
     </div>
 
     <img v-for="(img, index) in preloadImg" :key="index" :src="img" class="h-[1px] w-[1px] opacity-[0.1] pointer-events-none absolute">
@@ -51,6 +60,10 @@ const preloadImg = [
 </template>
 
 <style scoped>
+.hue {
+  filter: hue-rotate(-70deg);
+}
+
 .blink {
   animation: blinker 2s linear infinite;
 }
@@ -58,6 +71,17 @@ const preloadImg = [
 @keyframes blinker {
   50% {
     opacity: 0;
+  }
+}
+
+.credits {
+  position: relative;
+  margin-top: 100px;
+
+  a {
+    text-align: center;
+    font-size: 40px;
+    display: block;
   }
 }
 </style>

@@ -11,7 +11,6 @@ cursorPolyfill()
 
 <template>
   <div class="main-container bg-black h-screen w-screen fixed top-0 left-0 flex justify-center items-center">
-    <div class="noise"/>
     <div class="flicker-overlay"/>
     <div :style="{ transform: scale }">
       <div class="absolute h-full w-full focus z-[99]" style="transform: scale(1.01, 1.01)"/>
@@ -21,6 +20,10 @@ cursorPolyfill()
 </template>
 
 <style>
+div {
+  font-family: Rubik Dirt, sans-serif;
+}
+
 @keyframes grain {
   0%, 100% {transform: translate(0,0);}
   10% {transform: translate(-5%,-10%);}

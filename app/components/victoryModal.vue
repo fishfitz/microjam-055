@@ -16,8 +16,12 @@ const reload = () => (window.location.reload())
 
 <template>
   <BaseModal>
-    🎉
-    <div> You survived your shift! ({{ displayedTime }}) </div>
-    <a @click="reload"> Play again </a>
+    <div class="mt-[20px]"> Oh wow, you're still alive?! </div>
+    <div> I mean, see, it was no big deal, right? </div>
+    <div> Only took you {{ displayedTime }}! </div>
+    <br>
+    <a class="cursor-pointer" @click="reload"> Play again </a>
   </BaseModal>
+
+  <div class="bg-black opacity-80 h-full w-full left-0 top-0 fixed"/>
 </template>
